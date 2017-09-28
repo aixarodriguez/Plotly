@@ -33,17 +33,20 @@ library(ggplot2)
 
 <font size="4">Using dataset ToothGrowth in the R datasets package </font>
 
-```{r data, warning=FALSE, message=FALSE,echo=TRUE}
+```{r data, warning=FALSE, message=FALSE,echo=TRUE,eval=FALSE}
 df<-ToothGrowth
-df$pred<-predict(lm(len ~ dose, data = df))
-head(df)
+df$pred<-predict(lm(len ~ log(dose), data = df))
+ggplotly(ggplot(df,aes(y = len, x = log(dose))) 
+         +  geom_point(aes(color = supp)) 
+         +  geom_line(aes(y = pred)) 
+         +  geom_smooth())
 ```
 
 ## <span style="color:#FC345C"> Graph </span> 
 
 ```{r graph, warning=FALSE, message=FALSE}
 df<-ToothGrowth
-df$pred<-predict(lm(dose ~ len, data = df))
-ggplotly(ggplot(df,aes(y = dose, x = len)) +  geom_point(aes(color = supp)) +  geom_line(aes(y = pred)) +  geom_smooth())
+df$pred<-predict(lm(len ~ log(dose), data = df))
+ggplotly(ggplot(df,aes(y = log(dose), x = len)) +  geom_point(aes(color = supp)) +  geom_line(aes(x = pred)) +  geom_smooth())
 ```
 
