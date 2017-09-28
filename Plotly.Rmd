@@ -1,0 +1,52 @@
+---
+title: "Plotly"
+author: "Aixa Rodriguez Salan"
+date: "27 de septiembre de 2017"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+options(repos='http://cran.rstudio.com/')
+packages<-c("plotly","datasets","ggplot2")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  install.packages(setdiff(packages, rownames(installed.packages())))  
+}
+library(plotly)
+library(datasets)
+library(ggplot2)
+```
+
+##<span style="color:#FC345C"> Instructions </span> 
+<font size="4">Create a web page presentation using R Markdown that features a plot created with Plotly. Host your webpage on either GitHub Pages, RPubs, or NeoCities. Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly. We would love to see you show off your creativity!</font>
+
+<span style="color:#FC345C"> Review Criteria </span> 
+
+<font size="4">The rubric contains the following two questions:
+
+1. Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?
+2. Is the web page a presentation and does it feature an interactive plot that appears to have been created with Plotly?</font>
+
+## <span style="color:#FC345C"> Data </span> 
+
+<font size="4">Using dataset ToothGrowth in the R datasets package </font>
+
+```{r data, warning=FALSE, message=FALSE,echo=TRUE,eval=FALSE}
+df<-ToothGrowth
+df$pred<-predict(lm(len ~ log(dose), data = df))
+ggplotly(ggplot(df,aes(y = log(dose), x = len)) 
+         +  geom_point(aes(color = supp)) 
+         +  geom_line(aes(x = pred)) 
+         +  geom_smooth())
+```
+
+## <span style="color:#FC345C"> Graph </span> 
+
+```{r graph, warning=FALSE, message=FALSE}
+df<-ToothGrowth
+df$pred<-predict(lm(len ~ log(dose), data = df))
+ggplotly(ggplot(df,aes(y = log(dose), x = len)) +  geom_point(aes(color = supp)) +  geom_line(aes(x = pred)) +  geom_smooth())
+```
+
