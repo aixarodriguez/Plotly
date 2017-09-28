@@ -43,7 +43,7 @@ head(df)
 
 ```{r graph, warning=FALSE, message=FALSE}
 df<-ToothGrowth
-df$pred<-predict(lm(len ~ dose, data = df))
-ggplotly(ggplot(df,aes(y = len, x = dose)) +  geom_point(aes(color = supp)) +  geom_line(aes(y = pred)) +  geom_smooth())
+df$pred<-predict(lm(dose ~ len, data = df))
+ggplotly(ggplot(df,aes(y = dose, x = len)) +  geom_point(aes(color = supp)) +  geom_line(aes(y = pred)) +  geom_smooth())
 ```
 
